@@ -1,7 +1,9 @@
 require 'pry'
 class CashRegister
   attr_accessor :discount, :total, :add_item, :qty
-  def initialize(discount = 20)
+  @@all = []
+  
+  def initialize(discount = 0)
     @discount = discount
     @total = 0
   end
@@ -10,7 +12,7 @@ class CashRegister
   end
   
   def add_item(i, amt, qty=1)
-    #@qty = qty
+    @@i = i
     @total = self.total + amt*qty
     #binding.pry
   end
@@ -22,6 +24,14 @@ class CashRegister
     else 
       return "There is no discount to apply."
     end
+  end
+  
+  def items
+    add_item(i, amt, qty = 1)
+    
+    @@all << @@i
+    @@all
+    binding pry
   end
   #binding pry
 end

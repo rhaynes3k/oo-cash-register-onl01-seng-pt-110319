@@ -10,6 +10,7 @@ class CashRegister
     @costs = []
     @sub_tot = 0
   end
+  
   def total
     @total
   end
@@ -23,7 +24,7 @@ class CashRegister
   def apply_discount
     if @discount > 1
       @total = self.total - (discount.to_f/100*1000)
-        return "After the discount, the total comes to $#{@total.floor}."
+        "After the discount, the total comes to $#{@total.floor}."
     else 
       return "There is no discount to apply."
     end
@@ -36,10 +37,5 @@ class CashRegister
   def void_last_transaction
     @total -= self.sub_tot
   end
-  
-  
-  
-  
-  
   
 end

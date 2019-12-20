@@ -1,20 +1,23 @@
 require 'pry'
 class CashRegister
-  attr_accessor :discount, :total, :add_item, :qty
-  @@all = []
+  attr_accessor :discount, :total, :qty, :items, :costs, :sub_tot
+  
   
   def initialize(discount = 0)
     @discount = discount
     @total = 0
+    @items = []
+    @costs = []
+    @sub_tot = 0
   end
   def total
     @total
   end
   
   def add_item(i, amt, qty=1)
-    @@i = i
-    @total = self.total + amt*qty
-    #binding.pry
+    @sub_tot = amt*qty
+    @total = self.total + @sub_tot
+    qty.times {self.items.push(i)}
   end
   
   def apply_discount
@@ -27,11 +30,16 @@ class CashRegister
   end
   
   def items
-    add_item(i, amt, qty = 1)
-    
-    @@all << @@i
-    @@all
-    binding pry
+    @items
   end
-  #binding pry
+  
+  def void_last_transaction
+    @total -= self.sub_tot
+  end
+  
+  
+  
+  
+  
+  
 end
